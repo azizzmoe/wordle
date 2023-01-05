@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="./app.js"></script>
+    <title>Wordle Game</title>
+  </head>
+  <body>
+    <main>
+      <div id="wordle">
+        <div id="letters">
+          <!-- The letters will be generated here -->
+        </div>
+        <form id="guess-form">
+          <input type="text" id="guess-input" placeholder="Enter a word" />
+          <div class="btns">
+            <button type="submit" id="enter">Enter</button>
+            <button type="submit" id="restart">Generate</button>
+          </div>
+        </form>
+        <div id="guesses">
+          <!-- The player's guesses will be listed here -->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
