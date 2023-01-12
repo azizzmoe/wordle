@@ -1,20 +1,21 @@
 const letters = document.querySelectorAll(".scoreboard-letter");
 const loadingDiv = document.querySelector(".info-bar");
 const ANSWER_LENGTH = 5;
+const ROUNDS = 6;
 
 async function init() {
-  // tracks the word that has been guessed
   let currentGuess = "";
-  // tracks the row wer'e on
   let currentRow = 0;
+  let isLoading = true;
 
-  const res = await fetch(
-    "https://words.dev-apis.com/word-of-the-day?random=1"
-  );
+  const res = await fetch("https://words.dev-apis.com/word-of-the-day/");
   const resObj = await res.json();
   const word = resObj.word.toUpperCase();
+  const wordParts = word.split("");
+  let done = false;
+  setLoading(true);
+  isLoading = false; 
   console.log(word);
-  setLoading(false);
 
   // Adding letter to the dom
   function addLetter(letter) {
@@ -42,9 +43,43 @@ async function init() {
 
     // TODO do all the marking as "correct" "close" or "wrong"
 
+    const guessParts = currentGuess.split("");
+    const map = makeMap(wordParts);
+    console.log(map);
+
+    for (let i = 0; i < ANSWER_LENGTH; i++) {
+      // mark as correct
+      if (guessParts[i] === wordParts[i]) {
+        letters[currentRow * ANSWER_LENGTH + i].classList.add("correct");
+        map[guessParts[i]]--;
+      }
+    }
+
+    for (let i = 0; i < ANSWER_LENGTH; i++) {
+      // mark as correct
+      if (guessParts[i] === wordParts[i]) {
+        // do nothing we already did it
+      } else if (wordParts.includes(guessParts[i]) && map[guessParts[i]] > 0) {
+        // mark as close
+        letters[currentRow * ANSWER_LENGTH + i].classList.add("close");
+        map[guessParts[i]]--;
+      } else {
+        letters[currentRow * ANSWER_LENGTH + i].classList.add("wrong");
+      }
+    }
     // TODO did they win or lose?
 
     currentRow++;
+
+    if (currentGuess === word) {
+      alert("you win");
+      done = true;
+      return;
+    } else if (currentRow === ROUNDS) {
+      alert(`you lose the word was ${word}`);
+      done = true;
+    }
+
     currentGuess = "";
   }
 
@@ -55,6 +90,11 @@ async function init() {
   }
   // key press of the keyboard event
   document.addEventListener("keydown", (event) => {
+    if (done || isLoading) {
+      // do nothing
+      return;
+    }
+
     const action = event.key;
 
     if (action === "Enter") {
@@ -77,4 +117,15 @@ function setLoading(isLoading) {
   loadingDiv.classList.toggle("show", !isLoading);
 }
 
+function makeMap(array) {
+  const obj = {};
+  for (let i = 0; i < array.length; i++) {
+    if (obj[array[i]]) {
+      obj[array[i]]++;
+    } else {
+      obj[array[i]] = 1;
+    }
+  }
+  return obj;
+}
 init();
