@@ -4,8 +4,7 @@ Wordle Game is a word guessing game with a simple 6x5 grid interface that has ta
 
 ## Screenshot
 
-![Screenshot](./levels/level1.png);
-
+![Screenshot](./img/Screenshot.png.png)
 ---
 
 ## Used technologies
