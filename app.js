@@ -1,21 +1,25 @@
 const letters = document.querySelectorAll(".scoreboard-letter");
 const loadingDiv = document.querySelector(".info-bar");
+const title = document.querySelector(".brand");
+const note = document.querySelector("span");
+const result = document.querySelector(".result");
 const ANSWER_LENGTH = 5;
 const ROUNDS = 6;
 
 async function init() {
   let currentGuess = "";
   let currentRow = 0;
+  let done = false;
   let isLoading = true;
 
-  const res = await fetch("https://words.dev-apis.com/word-of-the-day/");
+  const res = await fetch(
+    "https://words.dev-apis.com/word-of-the-day?random=1"
+  );
   const resObj = await res.json();
   const word = resObj.word.toUpperCase();
   const wordParts = word.split("");
-  let done = false;
-  setLoading(true);
-  isLoading = false; 
-  console.log(word);
+  isLoading = false;
+  setLoading(isLoading);
 
   // Adding letter to the dom
   function addLetter(letter) {
@@ -39,9 +43,37 @@ async function init() {
       return;
     }
 
-    // TODO validate the word
+    //   validate the word
 
-    // TODO do all the marking as "correct" "close" or "wrong"
+    isLoading = true;
+    setLoading(isLoading);
+
+    const res = await fetch("https://words.dev-apis.com/validate-word", {
+      method: "POST",
+      body: JSON.stringify({ word: currentGuess }),
+    });
+    const resObj = await res.json();
+    const validWord = resObj.validWord;
+
+    isLoading = false;
+    setLoading(isLoading);
+
+    // validation word
+    if (!validWord) {
+      for (let i = 0; i < ANSWER_LENGTH; i++) {
+        letters[currentRow * ANSWER_LENGTH + i].classList.remove("invalid");
+
+        // long enough for the browser to repaint without the "invalid class" so we can then add it again
+        setTimeout(
+          () =>
+            letters[currentRow * ANSWER_LENGTH + i].classList.add("invalid"),
+          1
+        );
+      }
+      return;
+    }
+
+    //   do all the marking as "correct" "close" or "wrong"
 
     const guessParts = currentGuess.split("");
     const map = makeMap(wordParts);
@@ -67,16 +99,22 @@ async function init() {
         letters[currentRow * ANSWER_LENGTH + i].classList.add("wrong");
       }
     }
-    // TODO did they win or lose?
-
     currentRow++;
+    //   did they win or lose?
 
     if (currentGuess === word) {
-      alert("you win");
+      result.textContent = "Awesome!! YOU WIN";
+      result.classList.add("winner");
+      title.innerHTML = `<img src="./img/oh my.jpg">`;
+      note.classList.add("hidden");
+      // title.classList.add("winner");
+
       done = true;
       return;
     } else if (currentRow === ROUNDS) {
-      alert(`you lose the word was ${word}`);
+      result.textContent = `You've lost this round the word was ${word}`;
+      title.innerHTML = `<img src="./img/keep it up.jpg">`;
+      note.classList.add("hidden");
       done = true;
     }
 
@@ -113,8 +151,9 @@ function isLetter(letter) {
   return /^[a-zA-Z]$/.test(letter);
 }
 
+// show the loading spinner when needed
 function setLoading(isLoading) {
-  loadingDiv.classList.toggle("show", !isLoading);
+  loadingDiv.classList.toggle("hidden", !isLoading);
 }
 
 function makeMap(array) {
