@@ -3,6 +3,9 @@ const loadingDiv = document.querySelector(".info-bar");
 const title = document.querySelector(".brand");
 const note = document.querySelector("span");
 const result = document.querySelector(".result");
+const qq = document.querySelector(".qq");
+const closeOverlayBtn = document.getElementById("close-overlay-btn");
+const overlay = document.getElementById("overlay");
 const ANSWER_LENGTH = 5;
 const ROUNDS = 6;
 
@@ -12,9 +15,7 @@ async function init() {
   let done = false;
   let isLoading = true;
 
-  const res = await fetch(
-    "https://words.dev-apis.com/word-of-the-day?random=1"
-  );
+  const res = await fetch("https://words.dev-apis.com/word-of-the-day");
   const resObj = await res.json();
   const word = resObj.word.toUpperCase();
   const wordParts = word.split("");
@@ -103,18 +104,16 @@ async function init() {
     //   did they win or lose?
 
     if (currentGuess === word) {
+      overlay.style.display = "flex";
       result.textContent = "Awesome!! YOU WIN";
       result.classList.add("winner");
       title.innerHTML = `<img src="./img/oh my.jpg">`;
-      note.classList.add("hidden");
-      // title.classList.add("winner");
-
       done = true;
       return;
     } else if (currentRow === ROUNDS) {
+      overlay.style.display = "flex";
       result.textContent = `You've lost this round the word was ${word}`;
       title.innerHTML = `<img src="./img/keep it up.jpg">`;
-      note.classList.add("hidden");
       done = true;
     }
 
@@ -167,4 +166,8 @@ function makeMap(array) {
   }
   return obj;
 }
+closeOverlayBtn.addEventListener("click", function () {
+  overlay.style.display = "none";
+  window.location.reload();
+});
 init();
