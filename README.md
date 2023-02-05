@@ -6,14 +6,14 @@ Wordle Game is a word guessing game with a simple 6x5 grid interface that has ta
 
 ![Screenshot](./img/Screenshot.png)
 ---
-
-## Used technologies
+## [Live Site](https://a2uuz.github.io/wordle/)
 
 ### Development tools
 
-- JS - for writing the script
-- HTML - as templating language
+- HTML - as Templating language
 - SASS - as CSS interpreter
+- BOOTSTRAP - as CSS Framework
+- JS - for the script
 - VSCODE - Text Editor
   - Live Server
   - Prettier
