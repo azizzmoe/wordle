@@ -10,13 +10,13 @@ body {
   padding: 0;
 }
 
-.navbar {
+header {
   border-bottom: 2px solid #333;
   padding: 15px;
   text-align: center;
   margin-bottom: 0;
 }
-.navbar .brand {
+header .brand {
   font-size: 30px;
 }
 
@@ -202,7 +202,6 @@ body {
 
 .rules {
   font-weight: 700;
-  margin-top: 2rem;
   display: grid;
   place-items: center;
 }
@@ -245,4 +244,60 @@ body {
   font-weight: bold;
   border-radius: 2em;
   transition: all 0.3s ease-out;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#overlay-content {
+  background-color: rgb(255, 255, 255);
+  padding: 1rem;
+}
+#overlay-content section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+#overlay-content button {
+  width: 5%;
+  float: right;
+  background-color: red;
+  border: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.help {
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font: 25px Arial, sans-serif;
+  color: white;
+  background: rgb(255, 148, 8);
+  box-shadow: 6px 3px 18px -8px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  transition: 0.5s;
+}
+.help:hover {
+  transform: translate(-3px, -3px);
+  background: rgb(68, 68, 67);
+  color: white;
+  width: 40px;
+  height: 40px;
 }/*# sourceMappingURL=style.css.map */
