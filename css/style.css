@@ -58,19 +58,10 @@ header .brand {
 }
 
 .invalid {
-  -webkit-animation: flash 1s;
-          animation: flash 1s;
+  animation: flash 1s;
 }
 
 /* flashes red border and then fades back to gray */
-@-webkit-keyframes flash {
-  5% {
-    border-color: crimson;
-  }
-  100% {
-    border-color: #ccc;
-  }
-}
 @keyframes flash {
   5% {
     border-color: crimson;
@@ -81,16 +72,10 @@ header .brand {
 }
 .spiral {
   font-size: 40px;
-  -webkit-animation: spin 1.5s linear infinite;
-          animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
 }
 
 /* rotates clockwise indefinitely */
-@-webkit-keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -114,44 +99,6 @@ header .brand {
 }
 
 /* winner animation */
-@-webkit-keyframes rainbow {
-  100%, 0% {
-    color: rgb(255, 0, 0);
-  }
-  8% {
-    color: rgb(255, 127, 0);
-  }
-  16% {
-    color: rgb(255, 255, 0);
-  }
-  25% {
-    color: rgb(127, 255, 0);
-  }
-  33% {
-    color: rgb(0, 255, 0);
-  }
-  41% {
-    color: rgb(0, 255, 127);
-  }
-  50% {
-    color: rgb(0, 255, 255);
-  }
-  58% {
-    color: rgb(0, 127, 255);
-  }
-  66% {
-    color: rgb(0, 0, 255);
-  }
-  75% {
-    color: rgb(127, 0, 255);
-  }
-  83% {
-    color: rgb(255, 0, 255);
-  }
-  91% {
-    color: rgb(255, 0, 127);
-  }
-}
 @keyframes rainbow {
   100%, 0% {
     color: rgb(255, 0, 0);
@@ -191,8 +138,7 @@ header .brand {
   }
 }
 .winner {
-  -webkit-animation: rainbow 4s infinite linear;
-          animation: rainbow 4s infinite linear;
+  animation: rainbow 4s infinite linear;
 }
 
 .result {
@@ -280,24 +226,68 @@ header .brand {
 }
 
 .help {
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
   font: 25px Arial, sans-serif;
   color: white;
   background: rgb(255, 148, 8);
   box-shadow: 6px 3px 18px -8px rgba(0, 0, 0, 0.75);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
   text-align: center;
+  font-weight: bold;
   transition: 0.5s;
 }
-.help:hover {
-  transform: translate(-3px, -3px);
-  background: rgb(68, 68, 67);
+
+footer {
+  margin-bottom: auto;
+}
+
+.key-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.keyboard {
+  background-color: #718699;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.keyboard .row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.keyboard .key {
+  cursor: pointer;
+  border: 0;
+  border-radius: 1rem;
+  background-color: white;
+  font-weight: bold;
+  width: auto;
+  padding: 0.5rem;
+}
+.keyboard .main-keys {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0 0 0;
+}
+.keyboard .enter {
+  background: rgb(250, 86, 57);
   color: white;
-  width: 40px;
-  height: 40px;
+  width: 50%;
+}
+.keyboard .backspace {
+  background-color: rgb(253, 253, 96);
+  color: black;
 }/*# sourceMappingURL=style.css.map */
