@@ -146,6 +146,25 @@ async function init() {
       // do nothing
     }
   });
+
+  // Mobile key board
+  const mKey = document.querySelectorAll(".key");
+  for (let i = 0; i < mKey.length; i++) {
+    mKey[i].addEventListener("click", (e) => {
+      const mobileKey = e.target.innerHTML;
+
+      console.log(e.target.innerHTML);
+      if (mobileKey === "Enter") {
+        commit();
+      } else if (mobileKey === "⬅") {
+        backspace();
+      } else if (isLetter(mobileKey)) {
+        addLetter(mobileKey.toUpperCase());
+      } else {
+        // do nothing
+      }
+    });
+  }
 }
 
 function isLetter(letter) {
