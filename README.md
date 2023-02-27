@@ -6,7 +6,7 @@ Wordle Game is a word guessing game with a simple 6x5 grid interface that has ta
 
 ![Screenshot](./img/Screenshot.png)
 ---
-## [Live Site](https://a2uuz.github.io/wordle/)
+## [Live Site](https://azizzmoe.github.io/wordle/)
 
 ### Development tools
 
