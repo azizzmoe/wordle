@@ -219,7 +219,6 @@ header {
 #overlay-content {
   background-color: rgb(255, 255, 255);
   padding: 1rem;
-  // border-radius: 2rem;
 
   section {
     text-align: center;
@@ -240,27 +239,72 @@ header {
 }
 
 .help {
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
   font: 25px Arial, sans-serif;
   color: white;
   background: rgb(255, 148, 8);
   box-shadow: 6px 3px 18px -8px rgba(0, 0, 0, 0.75);
-  border-radius: 50%;
-  // padding: 1rem;
-  width: 40px;
-  height: 40px;
   text-align: center;
+  font-weight: bold;
   transition: 0.5s;
+}
 
-  &:hover {
-    transform: translate(-3px, -3px);
-    background: rgb(68, 68, 67);
+footer{
+  margin-bottom: auto;
+}
+
+.key-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.keyboard {
+  background-color: #718699;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+  }
+
+  .key {
+    cursor: pointer;
+    border: 0;
+    border-radius: 1rem;
+    background-color: white;
+    font-weight: bold;
+    width: auto;
+    padding: 0.5rem;
+  }
+
+  .main-keys {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem 0 0 0;
+  }
+  .enter {
+    background: rgb(250, 86, 57);
     color: white;
-    // padding: 10px;
-    width: 40px;
-    height: 40px;
+    width: 50%;
+  }
+  .backspace {
+    background-color: rgb(253, 253, 96);
+    color: black;
+    // width: 40%;
   }
 }
