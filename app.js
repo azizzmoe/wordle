@@ -106,14 +106,14 @@ async function init() {
     //   did they win or lose?
 
     if (currentGuess === word) {
-      overlay.style.display = "flex";
+      overlay.style.display = "grid";
       result.textContent = "Awesome!! YOU WIN";
       result.classList.add("winner");
       title.innerHTML = `<img src="./img/oh my.jpg">`;
       done = true;
       return;
     } else if (currentRow === ROUNDS) {
-      overlay.style.display = "flex";
+      overlay.style.display = "grid";
       result.textContent = `You've lost this round the word was ${word}`;
       title.innerHTML = `<img src="./img/keep it up.jpg">`;
       done = true;
@@ -191,4 +191,5 @@ closeOverlayBtn.addEventListener("click", function () {
   overlay.style.display = "none";
   window.location.reload();
 });
+
 init();
