@@ -263,6 +263,7 @@ header .brand {
 }
 
 .keyboard {
+  width: 100%;
   background-color: #718699;
   border-radius: 1rem;
   display: flex;
@@ -284,7 +285,7 @@ header .brand {
   background-color: white;
   font-weight: bold;
   width: auto;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 .keyboard .main-keys {
   display: flex;
