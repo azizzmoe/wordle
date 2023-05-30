@@ -285,7 +285,7 @@ header .brand {
   background-color: white;
   font-weight: bold;
   width: auto;
-  padding: 1rem;
+  padding: 0.6rem;
 }
 .keyboard .main-keys {
   display: flex;
@@ -302,4 +302,11 @@ header .brand {
 .keyboard .backspace {
   background-color: rgb(253, 253, 96);
   color: black;
+}
+
+@media (min-width: 1000px) {
+  /* CSS rules to be applied for screens with a maximum width of 768px */
+  .keyboard {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
